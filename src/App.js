@@ -9,8 +9,8 @@ function App() {
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
 
-  const client_id = process.env.REACT_APP_Client_Id.replace(/['"]+/g, '');
-  // console.log(client_id);
+  const client_id = process.env.REACT_APP_Client_Id;
+   console.log(client_id);
   const fetchImageUrl = `https://api.unsplash.com/search/photos?client_id=${client_id}&query=${query}&page=${page}`;
 
   const fetchImages = () => {
@@ -47,19 +47,14 @@ function App() {
       <input
         type="text"
         onKeyDown={(e) => searchImages(e)}
-        placeholder="Search For Imagesss 🔎"
+        placeholder="search for images 🔎"
         
       />
-      {/* <button type="submit" className="button">
-          Search
-        </button> */}
+
       <InfiniteScroll
         dataLength={data.length}
         next={fetchImages}
         hasMore={hasMore}
-        // loader={<p>Load more...</p>}
-        // { ...data.length == 0 ? <p>No Images to Load</p> : null}
-        //  loader={<p>No Images to Load</p>}
         endMessage={
           <p style={{ textAlign: "center" }}>
             <b>Yay! You have seen it all</b>
@@ -74,7 +69,7 @@ function App() {
                 className="image"
                 alt={data.alt_description}
               />
-              {/* <h4>Photo by {data.user.name} 📸</h4> */}
+
             </div>
           ))}
         </div>
